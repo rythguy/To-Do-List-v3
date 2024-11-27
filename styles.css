@@ -1,0 +1,434 @@
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 15%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.home {
+  width: 75%;
+  padding: 20px;
+  background-color: #fff;
+}
+
+
+.plus-button {
+  position: fixed;
+  bottom: 30px; /* Distance from the bottom edge */
+  right: 30px;  /* Distance from the right edge */
+  width: 70px;  /* Diameter of the circle */
+  height: 70px;
+  background-color: #007bff; /* Button color */
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Makes the button circular */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+  cursor: pointer;
+  border: none; /* Remove border if using a button element */
+  transition: transform 0.2s ease; /* Smooth spin animation */
+z-index: 1;
+}
+
+.plus-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: rotate(180deg); /* Full spin */
+
+}
+
+
+
+
+
+
+
+/* Popup Styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  width: 400px; /* Bigger size for the popup */
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative; /* For positioning the close button */
+}
+
+.popup.hidden {
+  display: none; /* Hide the popup by default */
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #7bade3;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Style for the task list buttons in the sidebar */
+.task-list-button {
+  width: 100%; /* Makes the button span the entire width of the sidebar */
+  padding: 10px; /* Adds space around the text inside the button */
+  background-color: #f4f4f4; /* Background color for task list buttons */
+  border: 1px solid #ccc; /* Border around the buttons */
+  border-radius: 5px; /* Rounded corners for the buttons */
+  text-align: left; /* Aligns text to the left inside the button */
+  color: #333; /* Text color */
+  font-size: 16px; /* Font size for the button text */
+  margin-bottom: 10px; /* Space between buttons */
+  cursor: pointer; /* Pointer cursor when hovering over the button */
+  transition: background-color 0.2s ease; /* Smooth transition on hover */
+}
+
+/* Style for task list buttons when hovered */
+.task-list-button:hover {
+  background-color: #007bff; /* Change background on hover */
+  color: white; /* Change text color on hover */
+}
+
+/* Style for task list buttons when focused (for accessibility) */
+.task-list-button:focus {
+  outline: 2px solid #007bff; /* Outline for accessibility focus */
+}
+
+
+
+
+
+
+/* delete button */
+/* Style the delete button */
+.delete-btn {
+  position: absolute;
+  top: 12%;
+  right: 30px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Highlight the item being dragged */
+.task-list-button.dragging {
+  opacity: 0.5;
+  background-color: #e0e0e0;
+}
+
+/* Style for the drop zone effect */
+.task-list-button.drop-zone {
+  border: 2px dashed #007bff;
+}
+
+
+
+
+
+.task-list-container {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.task-list-container li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.task-list-container li:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+.task-item {
+  display: flex;
+  justify-content: space-between; /* Space between task name and delete button */
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.task-item:hover {
+  background-color: #f1f1f1;
+}
+
+.delete-task-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.delete-task-btn:hover {
+  background-color: #c0392b;
+}
+
+
+
+
+
+/* Confirmation Popup Styles */
+.popup p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  opacity: 0.9;
+}
+
+.popup-content button:nth-child(2) {
+  margin-right: 10px; /* Add spacing between buttons */
+}
+
+
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  cursor: move; /* Shows move cursor when dragging */
+}
+
+.task-item.dragging {
+  opacity: 0.5;
+  background-color: #e0e0e0;
+}
+
+.task-item:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Full width for smaller screens */
+    height: auto;
+  }
+
+  .home {
+    width: 100%;
+  }
+
+  .plus-button {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+
+
+
+.task-list-button:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+
+
+
+
+.task-item {
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.delete-btn:hover,
+.close-btn:hover {
+  opacity: 0.8; /* Slight fade effect */
+}
+.task-list-container li {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+.task-overview {
+  background-color: #f4f4f4;
+  padding: 4px;
+  border-radius: 8px;
+  margin-top: 3px;
+  text-align: center;
+  height: 10%;
+}
+
+/* Styling the progress bar */
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    margin-top: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #007bff;
+    width: 0%; /* Default width, updated dynamically */
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
